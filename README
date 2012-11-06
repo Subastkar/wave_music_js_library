@@ -1,0 +1,27 @@
+This is a Javascript library created to interact with the Wave Music API.
+
+To use this library you must include the jQuery library in your app, you may
+find it in this repo too.
+
+The library have a constructor that create an instance that you can manage from
+the 'wm' object.
+
+The methods implemented are:
+
+  Get methods:
+  - getSongs()
+  - getSong(id)
+  - getPlaylists()
+  - getPlaylist(id)
+
+  Post methods:
+  - createPlaylist(data)
+  - addSongs(playlist_id, data)
+
+This is a example for a get method:
+
+  wm.getSongs(function(data){
+    console.log(data);
+  })
+
+Wich will print the json obteined from the API request.
