@@ -11,6 +11,7 @@ The methods implemented are:
   Get methods:
   - getSongs(callback)
   - getSong(id, callback)
+  - getSongByName(name, callback)
   - getPlaylists(callback)
   - getPlaylist(id, callback)
 
