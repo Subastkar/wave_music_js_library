@@ -1,5 +1,32 @@
 var wave_music = function(){
-  BASE_URI = "http://rubyfloyd.r12.railsrumble.com"
+  BASE_URI = "http://wave_music.colimacolectivo.com";
+
+  var logIn = function(email, password, callback){
+    $.ajax({
+      url:  BASE_URI + "/api/sessions",
+      type: 'POST',
+      data: {user_login: { email: email, password: password }},
+      success: function(data){
+        return callback(data);
+      },
+      error: function(data){
+        return callback(data);
+      }
+    });
+  };
+
+  var logOut = function(id, callback){
+    $.ajax({
+      url: BASE_URI + "/api/sessions/" + id,
+      type: 'DELETE',
+      success: function(data){
+        return callback(data);
+      },
+      error: function(data){
+        return callback(data);
+      }
+    });
+  }
 
   var getSongs = function(callback){
     $.getJSON(BASE_URI + "/api/songs",function(data){
@@ -25,23 +52,31 @@ var wave_music = function(){
     });
   };
 
-  var createPlaylist = function(data){
+  var createPlaylist = function(name, callback){
     $.ajax({
       type: "POST",
       url: BASE_URI + "/api/playlists",
-      data: data
-    }).done(function( msg ) {
-      alert( "Data Saved: " + msg );
+      data: { name: name },
+      success: function( data ){
+        callback(data);
+      },
+      error: function ( data ){
+        callback(data);
+      }
     });
   };
 
-  var addSongs = function(id, data){
+  var addSongs = function(playlist_id, songs_id, callback){
     $.ajax({
       type: "POST",
-      url: BASE_URI + "/api/playlists/" + id + "/add_songs",
-      data: data
-    }).done(function( msg ) {
-      alert( "Data Saved: " + msg );
+      url: BASE_URI + "/api/playlists/" + playlist_id + "/add_songs",
+      data: { id: playlist_id, songs: songs_id },
+      success: function( data ){
+        callback(data);
+      },
+      error: function ( data ){
+        callback(data);
+      }
     });
   };
 
@@ -50,8 +85,9 @@ var wave_music = function(){
    getSong:        getSong,
    getPlaylists:   getPlaylists,
    getPlaylist:    getPlaylist,
-   createPLaylist: createPlaylist, 
-   addSongs:       addSongs
+   createPlaylist: createPlaylist, 
+   addSongs:       addSongs,
+   logIn:          logIn
   };
 
 };
