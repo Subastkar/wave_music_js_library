@@ -40,6 +40,12 @@ var wave_music = function(){
     });
   };
 
+  var getSongByName = function(name, callback){
+    $.getJSON(BASE_URI + "/api/songs/search?name=" + name, function(data){
+      return callback(data);
+    });
+  };
+
   var getPlaylists = function(callback){
     $.getJSON(BASE_URI + "/api/playlists", function(data){
       return callback(data);
@@ -83,11 +89,13 @@ var wave_music = function(){
   return {
    getSongs:       getSongs,
    getSong:        getSong,
+   getSongByName:  getSongByName,
    getPlaylists:   getPlaylists,
    getPlaylist:    getPlaylist,
    createPlaylist: createPlaylist, 
    addSongs:       addSongs,
-   logIn:          logIn
+   logIn:          logIn,
+   logOut:         logOut
   };
 
 };

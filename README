@@ -9,14 +9,20 @@ the 'wm' object.
 The methods implemented are:
 
   Get methods:
-  - getSongs()
-  - getSong(id)
-  - getPlaylists()
-  - getPlaylist(id)
+  - getSongs(callback)
+  - getSong(id, callback)
+  - getPlaylists(callback)
+  - getPlaylist(id, callback)
 
   Post methods:
-  - createPlaylist(data)
-  - addSongs(playlist_id, data)
+  - logIn(email, password, callback)
+  - createPlaylist(name_of_playlist, callback)
+  - addSongs(playlist_id, songs_id, callback)
+    // In this case the songs_id is an array of the ids of each
+    // song you want to add.
+
+  Delete methods:
+  - logOut(user_id, callback)
 
 This is a example for a get method:
 
